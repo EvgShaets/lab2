@@ -36,42 +36,83 @@ class MainActivity : AppCompatActivity() {
 
         buttonAddition.setOnClickListener { v ->
             if (checkNumberInEditText(v)) {
-                val number1: Int = editTextNumber1.text.toString().toInt()
-                val number2: Int = editTextNumber2.text.toString().toInt()
+                try {
+                    val number1: Int = editTextNumber1.text.toString().toInt()
+                    val number2: Int = editTextNumber2.text.toString().toInt()
 
-                textViewResult.text = (number1 + number2).toString()
+                    textViewResult.text = (number1.toLong() + number2).toString()
+                } catch (e: NumberFormatException) {
+                    textViewResult.text = ""
+                    Snackbar.make(
+                        v,
+                        "Числа в поле 1 и поле 2 не должно превосходить 2 147 483 647",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
         buttonSubtraction.setOnClickListener { v ->
             if (checkNumberInEditText(v)) {
-                val number1: Int = editTextNumber1.text.toString().toInt()
-                val number2: Int = editTextNumber2.text.toString().toInt()
+                try {
+                    val number1: Int = editTextNumber1.text.toString().toInt()
+                    val number2: Int = editTextNumber2.text.toString().toInt()
 
-                textViewResult.text = (number1 - number2).toString()
+                    textViewResult.text = (number1 - number2).toString()
+                } catch (e: NumberFormatException) {
+                    textViewResult.text = ""
+                    Snackbar.make(
+                        v,
+                        "Числа в поле 1 и поле 2 не должно превосходить 2 147 483 647",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
         buttonMultiplication.setOnClickListener { v ->
             if (checkNumberInEditText(v)) {
-                val number1: Int = editTextNumber1.text.toString().toInt()
-                val number2: Int = editTextNumber2.text.toString().toInt()
+                try {
+                    val number1: Int = editTextNumber1.text.toString().toInt()
+                    val number2: Int = editTextNumber2.text.toString().toInt()
 
-                textViewResult.text = (number1 * number2).toString()
+                    textViewResult.text = (number1.toLong() * number2).toString()
+                } catch (e: NumberFormatException) {
+                    textViewResult.text = ""
+                    Snackbar.make(
+                        v,
+                        "Числа в поле 1 и поле 2 не должно превосходить 2 147 483 647",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
             }
         }
 
         buttonDivision.setOnClickListener { v ->
             if (checkNumberInEditText(v)) {
-                val number1: Int = editTextNumber1.text.toString().toInt()
-                val number2: Int = editTextNumber2.text.toString().toInt()
+                try {
+                    val number1: Int = editTextNumber1.text.toString().toInt()
+                    val number2: Int = editTextNumber2.text.toString().toInt()
 
-                if(number2 == 0) {
-                    Snackbar.make(v, "Для выполнения операции деления запишите в поле 2 число отличное от нуля", Snackbar.LENGTH_LONG).show()
-                    textViewResult.text = "Деление на ноль невозможно"
+                    if (number2 == 0) {
+                        Snackbar.make(
+                            v,
+                            "Для выполнения операции деления запишите в поле 2 число отличное от нуля",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                        textViewResult.text = "Деление на ноль невозможно"
+                    } else
+                        textViewResult.text = (number1 / number2).toString()
+                } catch (e: NumberFormatException) {
+                    textViewResult.text = ""
+                    Snackbar.make(
+                        v,
+                        "Числа в поле 1 и поле 2 не должно превосходить 2 147 483 647",
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
-                else
-                    textViewResult.text = (number1 / number2).toString()
+
+
             }
         }
     }
